@@ -1,0 +1,72 @@
+[{
+  "_id": "1",
+  "countryCode": "DE",
+  "partyId": "BEC",
+  "startDateTime": {
+    "$date": "2022-06-06T17:39:09.000Z"
+  },
+  "endDateTime": {
+    "$date": "2022-06-06T17:39:09.000Z"
+  },
+  "cdrToken": {
+    "uid": "012345678",
+    "type": "RFID",
+    "contractId": "DE8ACC12E46L89"
+  },
+  "authMethod": "WHITELIST",
+  "cdrLocation": {
+    "locationId": "LOC1",
+    "name": "Gent Zuid",
+    "address": "F.Rooseveltlaan 3A",
+    "city": "Gent",
+    "postalCode": "9000",
+    "country": "BEL",
+    "coordinates": {
+      "latitude": "3.729944",
+      "longitude": "51.047599"
+    },
+    "evseUid": "3256",
+    "evseId": "BE*BEC*E041503003",
+    "connectorId": "1",
+    "connectorStandard": "IEC_62196_T2",
+    "connectorFormat": "SOCKET",
+    "connectorPowerType": "AC_1_PHASE"
+  },
+  "currency": "EUR",
+  "tariffs": [{
+    "countryCode": "BE",
+    "partyId": "BEC",
+    "id": "12",
+    "currency": "EUR",
+    "elements": [{
+      "priceComponents": [{
+        "type": "TIME",
+        "price": 2.00,
+        "vat": 10.0,
+        "stepSize": 300
+      }]
+    }],
+    "lastUpdated": "2022-06-06T17:39:09.000Z"
+  }],
+  "chargingPeriods": [{
+    "startDateTime": "2022-06-06T17:39:09.000Z",
+    "dimensions": [{
+      "type": "TIME",
+      "volume": 1.973
+    }],
+    "tariffId": "12"
+  }],
+  "totalCost": {
+    "exclVat": 4.00,
+    "inclVat": 4.40
+  },
+  "totalEnergy": 15.342,
+  "totalTime": 1.973,
+  "totalTimeCost": {
+    "exclVat": 4.00,
+    "inclVat": 4.40
+  },
+  "lastUpdated": {
+    "$date": "2022-06-06T17:39:09.000Z"
+  }
+}]

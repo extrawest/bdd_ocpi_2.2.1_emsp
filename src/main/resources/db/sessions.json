@@ -1,0 +1,115 @@
+[{
+  "_id": "1",
+  "countryCode": "DE",
+  "partyId": "BEC",
+  "startDateTime": {
+    "$date": "2022-06-05T17:39:09.000Z"
+  },
+  "kwh": 50,
+  "cdrToken": {
+    "countryCode": "BE",
+    "partyId": "DE",
+    "uid": "8b25d516-dc29-4934-ab16-424f1dc33d06",
+    "type": "RFID",
+    "contractId": "contract1"
+  },
+  "authMethod": "AUTH_REQUEST",
+  "locationId": "7",
+  "evseUid": "5d7db911-dfc0-4774-968a-276b7bce14bf",
+  "connectorId": "connector-1a",
+  "currency": "USD",
+  "status": "INVALID",
+  "lastUpdated": {
+    "$date": "2022-06-05T17:39:09.000Z"
+  },
+  "_class": "com.extrawest.ocpi221emsp_client.model.SessionDocument"
+},
+  {
+    "country_code": "NL",
+    "party_id": "STK",
+    "id": "101",
+    "startDateTime": {
+      "$date": "2020-03-09T10:17:09Z"
+    },
+    "kwh": 0.0,
+    "cdr_token": {
+      "uid": "123abc",
+      "type": "RFID",
+      "contract_id": "NL-TST-C12345678-S"
+    },
+    "auth_method": "WHITELIST",
+    "location_id": "LOC1",
+    "evse_uid": "3256",
+    "connector_id": "1",
+    "currency": "EUR",
+    "total_cost": {
+      "excl_vat": 2.5
+    },
+    "status": "PENDING",
+    "last_updated": {
+      "$date": "2020-03-09T10:17:09Z"
+    }
+  },
+  {
+    "country_code": "BE",
+    "party_id": "BEC",
+    "id": "101",
+    "startDateTime": {
+      "$date": "2020-03-09T10:17:09Z"
+    },
+    "end_date_time": {
+      "$date": "2020-03-09T10:17:09Z"
+    },
+    "kwh": 41.00,
+    "cdr_token": {
+      "uid": "123abc",
+      "type": "RFID",
+      "contract_id": "NL-TST-C12345678-S"
+    },
+    "auth_method": "WHITELIST",
+    "location_id": "LOC1",
+    "evse_uid": "3256",
+    "connector_id": "1",
+    "currency": "EUR",
+    "charging_periods": [{
+      "start_date_time": {
+        "$date": "2020-03-09T10:17:09Z"
+      },
+      "dimensions": [{
+        "type": "ENERGY",
+        "volume": 120
+      }, {
+        "type": "MAX_CURRENT",
+        "volume": 30
+      }]
+    }, {
+      "startDateTime": {
+        "$date": "2020-03-09T10:17:09Z"
+      },
+      "dimensions": [{
+        "type": "ENERGY",
+        "volume": 41000
+      }, {
+        "type": "MIN_CURRENT",
+        "volume": 34
+      }]
+    }, {
+      "startDateTime": {
+        "$date": "2020-03-09T10:17:09Z"
+      },
+      "dimensions": [{
+        "type": "PARKING_TIME",
+        "volume": 0.718
+      }],
+      "tariff_id": "12"
+    }],
+    "total_cost": {
+      "excl_vat": 8.50,
+      "incl_vat": 9.35
+    },
+    "status": "COMPLETED",
+    "last_updated": {
+      "$date": "2020-03-09T10:17:09Z"
+    }
+  }
+]

@@ -1,0 +1,116 @@
+[
+  {
+    "_id": "Green5",
+    "countryCode": "DE",
+    "partyId": "BEC",
+    "currency": "USD",
+    "elements": [
+      {
+        "priceComponents": [
+          {
+            "type": "TIME",
+            "price": 2,
+            "vat": 10,
+            "step_size": 300
+          }
+        ]
+      }
+    ],
+    "lastUpdated": {
+      "$date": "2022-06-05T17:39:09.000Z"
+    },
+    "_class": "com.extrawest.ocpi221emsp_client.model.TariffDocument"
+  },
+  {
+    "_id": "Green6",
+    "countryCode": "DE",
+    "partyId": "BEC",
+    "currency": "USD",
+    "elements": [
+      {
+        "priceComponents": [
+          {
+            "type": "TIME",
+            "price": 5,
+            "vat": 15,
+            "step_size": 100
+          }
+        ]
+      }
+    ],
+    "lastUpdated": {
+      "$date": "2022-06-06T17:39:09.000Z"
+    },
+    "_class": "com.extrawest.ocpi221emsp_client.model.TariffDocument"
+  },
+  {
+    "country_code": "DE",
+    "party_id": "ALL",
+    "id": "20",
+    "currency": "EUR",
+    "min_price": {
+      "excl_vat": 0.50,
+      "incl_vat": 0.55
+    },
+    "elements": [{
+      "price_components": [{
+        "type": "ENERGY",
+        "price": 0.25,
+        "vat": 10.0,
+        "step_size": 1
+      }]
+    }],
+    "lastUpdated": {
+      "$date": "2018-12-17T16:45:21Z"
+    }
+  },
+  {
+    "country_code": "DE",
+    "party_id": "ALL",
+    "id": "12",
+    "currency": "EUR",
+    "type": "AD_HOC_PAYMENT",
+    "tariff_alt_text": [{
+      "language": "en",
+      "text": "2.00 euro p/hour including VAT."
+    }, {
+      "language": "nl",
+      "text": "2.00 euro p/uur inclusief BTW."
+    }],
+    "elements": [{
+      "price_components": [{
+        "type": "TIME",
+        "price": 1.90,
+        "vat": 5.2,
+        "step_size": 300
+      }]
+    }],
+    "lastUpdated": {
+      "$date": "2015-06-29T20:39:09Z"
+    }
+  },
+  {
+    "country_code": "DE",
+    "party_id": "ALL",
+    "id": "13",
+    "currency": "EUR",
+    "type": "PROFILE_CHEAP",
+    "tariff_alt_url": "https://company.com/tariffs/13",
+    "elements": [{
+      "price_components": [{
+        "type": "FLAT",
+        "price": 0.50,
+        "vat": 20.0,
+        "step_size": 1
+      }, {
+        "type": "ENERGY",
+        "price": 0.25,
+        "vat": 10.0,
+        "step_size": 100
+      }]
+    }],
+    "lastUpdated": {
+      "$date": "2015-06-29T20:39:09Z"
+    }
+  }
+]

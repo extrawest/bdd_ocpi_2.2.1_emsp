@@ -1,0 +1,138 @@
+[{
+  "_id": "LOC1",
+  "countryCode": "BE",
+  "partyId": "BEC",
+  "publish": true,
+  "name": "Gent Zuid",
+  "address": "F.Rooseveltlaan 3A",
+  "city": "Gent",
+  "postalCode": "9000",
+  "country": "BEL",
+  "coordinates": {
+    "latitude": "51.047599",
+    "longitude": "3.729944"
+  },
+  "parkingType": "ON_STREET",
+  "evses": [{
+    "uid": "3256",
+    "evseId": "BE*BEC*E041503001",
+    "status": "AVAILABLE",
+    "capabilities": [
+      "RESERVABLE"
+    ],
+    "connectors": [{
+      "connectorId": "L1",
+      "standard": "IEC_62196_T2",
+      "format": "CABLE",
+      "powerType": "AC_3_PHASE",
+      "maxVoltage": 220,
+      "maxAmperage": 16,
+      "tariffIds": ["11"],
+      "lastUpdated": {
+        "$date": "2022-06-06T17:39:09.000Z"
+      }
+    }],
+    "physicalReference": "1",
+    "floorLevel": "-1",
+    "lastUpdated": "2015-06-28T08:12:01Z"
+  }, {
+    "uid": "3257",
+    "evseId": "BE*BEC*E041503002",
+    "status": "RESERVED",
+    "capabilities": [
+      "RESERVABLE"
+    ],
+    "connectors": [{
+      "connectorId": "A1",
+      "standard": "IEC_62196_T2",
+      "format": "SOCKET",
+      "powerType": "AC_3_PHASE",
+      "maxVoltage": 220,
+      "maxAmperage": 16,
+      "tariffIds": ["12"],
+      "lastUpdated": {
+        "$date": "2022-06-06T17:39:09.000Z"
+      }
+    }],
+    "physicalReference": "2",
+    "floorLevel": "-2",
+    "lastUpdated": {
+      "$date": "2022-06-06T17:39:09.000Z"
+    }
+  }],
+  "operator": {
+    "name": "BeCharged"
+  },
+  "timeZone": "Europe/Brussels",
+  "lastUpdated": {
+    "$date": "2022-06-06T17:39:09.000Z"
+  }
+},
+
+  {
+    "country_code": "NL",
+    "party_id": "ALF",
+    "_id": "3e7b39c2-10d0-4138-a8b3-8509a25f9920",
+    "publish": true,
+    "name": "ihomer",
+    "address": "Tamboerijn 7",
+    "city": "Etten-Leur",
+    "postal_code": "4876 BS",
+    "country": "NLD",
+    "coordinates": {
+      "latitude": "51.562787",
+      "longitude": "4.638975"
+    },
+    "parking_type": "PARKING_LOT",
+    "evses": [{
+      "uid": "fd855359-bc81-47bb-bb89-849ae3dac89e",
+      "evse_id": "NL*ALF*E000000001",
+      "status": "AVAILABLE",
+      "connectors": [{
+        "id": "1",
+        "standard": "IEC_62196_T2",
+        "format": "SOCKET",
+        "power_type": "AC_3_PHASE",
+        "max_voltage": 220,
+        "max_amperage": 16,
+        "last_updated": "2019-07-01T12:12:11Z"
+      }],
+      "parking_restrictions": [ "CUSTOMERS" ],
+      "last_updated": "2019-07-01T12:12:11Z"
+    }],
+    "time_zone": "Europe/Amsterdam",
+    "last_updated": "2019-07-01T12:12:11Z"
+  },
+  {
+    "country_code": "NL",
+    "party_id": "ALF",
+    "_id": "LOC3",
+    "publish": false,
+    "name": "ihomer",
+    "address": "Tamboerijn 7",
+    "city": "Etten-Leur",
+    "postal_code": "4876 BS",
+    "country": "NLD",
+    "coordinates": {
+      "latitude": "51.562787",
+      "longitude": "4.638975"
+    },
+    "evses": [{
+      "uid": "fd855359-bc81-47bb-bb89-849ae3dac89e",
+      "evse_id": "NL*ALF*E000000001",
+      "status": "AVAILABLE",
+      "connectors": [{
+        "id": "1",
+        "standard": "IEC_62196_T2",
+        "format": "SOCKET",
+        "power_type": "AC_3_PHASE",
+        "max_voltage": 220,
+        "max_amperage": 16,
+        "last_updated": "2019-07-01T12:12:11Z"
+      }],
+      "parking_restrictions": [ "CUSTOMERS" ],
+      "last_updated": "2019-07-01T12:12:11Z"
+    }],
+    "time_zone": "Europe/Amsterdam",
+    "last_updated": "2019-07-01T12:12:11Z"
+  }]
