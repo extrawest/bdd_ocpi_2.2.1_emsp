@@ -3,12 +3,12 @@ package com.extrawest.bdd_cpo_ocpi.validation.request;
 import com.extrawest.bdd_cpo_ocpi.utils.Generators;
 import com.extrawest.bdd_cpo_ocpi.validation.OutgoingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.RequestMessageFactory;
-import com.extrawest.ocpi.model.dto.CdrDTO;
+import com.extrawest.ocpi.model.dto.ChargingPeriod;
+import com.extrawest.ocpi.model.dto.Price;
+import com.extrawest.ocpi.model.dto.cdr.CDR;
+import com.extrawest.ocpi.model.dto.cdr.CdrLocation;
+import com.extrawest.ocpi.model.dto.cdr.CdrToken;
 import com.extrawest.ocpi.model.enums.AuthMethod;
-import com.extrawest.ocpi.model.vo.CdrLocation;
-import com.extrawest.ocpi.model.vo.CdrToken;
-import com.extrawest.ocpi.model.vo.ChargingPeriod;
-import com.extrawest.ocpi.model.vo.Price;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +21,8 @@ import java.util.Map;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class CdrRequestBddHandler extends OutgoingMessageFieldsFactory<CdrDTO>
-        implements RequestMessageFactory<CdrDTO> {
+public class CdrRequestBddHandler extends OutgoingMessageFieldsFactory<CDR>
+        implements RequestMessageFactory<CDR> {
     public static final String COUNTRY_CODE_REQUIRED = "country_code";
     public static final String PARTY_ID_REQUIRED = "party_id";
     public static final String ID_REQUIRED = "id";
@@ -91,9 +91,9 @@ public class CdrRequestBddHandler extends OutgoingMessageFieldsFactory<CdrDTO>
     }
 
     @Override
-    public CdrDTO createMessageWithValidatedParams(Map<String, String> params) {
-        CdrDTO cdrDTO = super.createMessageWithValidatedParamsViaLibModel(params);
-        log.info(getParameterizeClassName() + ": " + cdrDTO);
-        return cdrDTO;
+    public CDR createMessageWithValidatedParams(Map<String, String> params) {
+        CDR CDRDto = super.createMessageWithValidatedParamsViaLibModel(params);
+        log.info(getParameterizeClassName() + ": " + CDRDto);
+        return CDRDto;
     }
 }

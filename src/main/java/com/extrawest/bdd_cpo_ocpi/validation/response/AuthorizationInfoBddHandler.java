@@ -2,11 +2,11 @@ package com.extrawest.bdd_cpo_ocpi.validation.response;
 
 import com.extrawest.bdd_cpo_ocpi.validation.IncomingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.ResponseMessageFactory;
-import com.extrawest.ocpi.model.dto.TokenDTO;
-import com.extrawest.ocpi.model.dto.request.LocationReferences;
-import com.extrawest.ocpi.model.dto.response.AuthorizationInfo;
+import com.extrawest.ocpi.model.dto.AuthorizationInfo;
+import com.extrawest.ocpi.model.dto.DisplayText;
+import com.extrawest.ocpi.model.dto.LocationReferences;
+import com.extrawest.ocpi.model.dto.token.Token;
 import com.extrawest.ocpi.model.enums.AllowedType;
-import com.extrawest.ocpi.model.vo.DisplayText;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,7 +36,7 @@ public class AuthorizationInfoBddHandler extends IncomingMessageFieldsFactory<Au
         });
         this.requiredFieldsSetup.put(TOKEN_REQUIRED, (req, token) -> {
             if (nonEqual(wildCard, token)) {
-                TokenDTO parsedToken = parseModelFromJson(token, TOKEN_REQUIRED, TokenDTO.class);
+                Token parsedToken = parseModelFromJson(token, TOKEN_REQUIRED, Token.class);
                 req.setToken(parsedToken);
             }
         });
@@ -64,7 +64,7 @@ public class AuthorizationInfoBddHandler extends IncomingMessageFieldsFactory<Au
         assertionFactory.put(ALLOWED_REQUIRED, (expectedParams, actual) -> compareStringsIncludeWildCard(
                 expectedParams, actual.getAllowed().value(), ALLOWED_REQUIRED));
         assertionFactory.put(TOKEN_REQUIRED, (expectedParams, actual) -> compareObjectIncludeWildCard(
-                expectedParams, actual.getToken(), TOKEN_REQUIRED, TokenDTO.class));
+                expectedParams, actual.getToken(), TOKEN_REQUIRED, Token.class));
         assertionFactory.put(AUTHORIZATION_REFERENCE, (expectedParams, actual) -> compareStringsIncludeWildCard(
                 expectedParams, actual.getAuthorizationReference(), AUTHORIZATION_REFERENCE));
         assertionFactory.put(LOCATION, (expectedParams, actual) -> compareObjectIncludeWildCard(

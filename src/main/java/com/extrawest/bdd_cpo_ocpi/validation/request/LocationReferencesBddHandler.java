@@ -2,7 +2,7 @@ package com.extrawest.bdd_cpo_ocpi.validation.request;
 
 import com.extrawest.bdd_cpo_ocpi.validation.OutgoingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.RequestMessageFactory;
-import com.extrawest.ocpi.model.dto.request.LocationReferences;
+import com.extrawest.ocpi.model.dto.LocationReferences;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

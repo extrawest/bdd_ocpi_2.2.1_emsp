@@ -2,10 +2,10 @@ package com.extrawest.bdd_cpo_ocpi.repository.impl;
 
 import com.extrawest.bdd_cpo_ocpi.exception.BddTestingException;
 import com.extrawest.bdd_cpo_ocpi.repository.VersionDetailsRepository;
-import com.extrawest.ocpi.model.dto.response.VersionDetailsResponseDTO;
+import com.extrawest.ocpi.model.dto.Endpoint;
+import com.extrawest.ocpi.model.dto.VersionDetails;
 import com.extrawest.ocpi.model.enums.ModuleID;
 import com.extrawest.ocpi.model.enums.VersionNumber;
-import com.extrawest.ocpi.model.vo.Endpoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -21,7 +21,7 @@ public class VersionDetailsRepositoryImpl implements VersionDetailsRepository {
     private final List<Endpoint> endpoints = new ArrayList<>();
 
     @Override
-    public void addAll(VersionDetailsResponseDTO details) {
+    public void addAll(VersionDetails details) {
         if (!details.getVersion().equals(VersionNumber.V_2_2_1)) {
             throw new BddTestingException(String.format(VERSION_IS_NOT_2_2_1.getValue(), details.getVersion()));
         }

@@ -1,11 +1,12 @@
 package com.extrawest.bdd_cpo_ocpi.validation.request;
 
+
 import com.extrawest.bdd_cpo_ocpi.validation.OutgoingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.RequestMessageFactory;
+import com.extrawest.ocpi.model.dto.location.Connector;
 import com.extrawest.ocpi.model.enums.ConnectorFormat;
 import com.extrawest.ocpi.model.enums.ConnectorType;
 import com.extrawest.ocpi.model.enums.PowerType;
-import com.extrawest.ocpi.model.vo.Connector;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

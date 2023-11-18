@@ -2,10 +2,10 @@ package com.extrawest.bdd_cpo_ocpi.validation.response;
 
 import com.extrawest.bdd_cpo_ocpi.validation.IncomingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.ResponseMessageFactory;
+import com.extrawest.ocpi.model.dto.location.Connector;
 import com.extrawest.ocpi.model.enums.ConnectorFormat;
 import com.extrawest.ocpi.model.enums.ConnectorType;
 import com.extrawest.ocpi.model.enums.PowerType;
-import com.extrawest.ocpi.model.vo.Connector;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

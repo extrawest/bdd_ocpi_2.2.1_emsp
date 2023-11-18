@@ -4,14 +4,12 @@ import com.extrawest.bdd_cpo_ocpi.exception.BddTestingException;
 import com.extrawest.bdd_cpo_ocpi.models.enums.ImplementedMessageType;
 import com.extrawest.bdd_cpo_ocpi.validation.request.*;
 import com.extrawest.bdd_cpo_ocpi.validation.response.*;
-import com.extrawest.ocpi.model.OcpiRequestData;
-import com.extrawest.ocpi.model.OcpiResponseData;
 import com.extrawest.ocpi.model.dto.*;
-import com.extrawest.ocpi.model.dto.response.AuthorizationInfo;
-import com.extrawest.ocpi.model.dto.response.VersionDetailsResponseDTO;
-import com.extrawest.ocpi.model.dto.response.VersionResponseDTO;
-import com.extrawest.ocpi.model.vo.Connector;
-import com.extrawest.ocpi.model.vo.Evse;
+import com.extrawest.ocpi.model.dto.location.Connector;
+import com.extrawest.ocpi.model.dto.location.Location;
+import com.extrawest.ocpi.model.dto.tariff.Tariff;
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
+import com.extrawest.ocpi.model.markers.OcpiResponseData;
 import jakarta.annotation.PostConstruct;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -140,31 +138,31 @@ public class AssertionAndValidationServiceImpl implements AssertionAndValidation
     public ImplementedMessageType validateAndAssertFields(OcpiResponseData responseData,
                                                           Map<String, String> parameters) {
         validateResponseWithLibModel(responseData);
-        if (responseData instanceof TariffDTO response) {
+        if (responseData instanceof Tariff response) {
             tariffResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return TARIFF;
         }
-        if (responseData instanceof VersionDetailsResponseDTO response) {
+        if (responseData instanceof VersionDetails response) {
             versionDetailsResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return VERSION_DETAILS;
         }
-        if (responseData instanceof VersionResponseDTO response) {
+        if (responseData instanceof Version response) {
             versionResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return VERSION;
         }
-        if (responseData instanceof SessionDTO response) {
+        if (responseData instanceof Session response) {
             sessionResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return SESSION;
         }
-        if (responseData instanceof CdrDTO response) {
+        if (responseData instanceof com.extrawest.ocpi.model.dto.cdr.CDR response) {
             cdrResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return CDR;
         }
-        if (responseData instanceof LocationDTO response) {
+        if (responseData instanceof Location response) {
             locationResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return LOCATION;
         }
-        if (responseData instanceof Evse response) {
+        if (responseData instanceof com.extrawest.ocpi.model.dto.location.EVSE response) {
             evseResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return EVSE;
         }
@@ -176,7 +174,7 @@ public class AssertionAndValidationServiceImpl implements AssertionAndValidation
             authorizationInfoBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return AUTHORIZATION_INFO;
         }
-        if (responseData instanceof CredentialsDTO response) {
+        if (responseData instanceof Credentials response) {
             credentialsResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return CREDENTIALS;
         } else {

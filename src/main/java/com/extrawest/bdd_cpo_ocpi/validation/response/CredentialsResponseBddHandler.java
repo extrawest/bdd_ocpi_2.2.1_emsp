@@ -2,8 +2,8 @@ package com.extrawest.bdd_cpo_ocpi.validation.response;
 
 import com.extrawest.bdd_cpo_ocpi.validation.IncomingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.ResponseMessageFactory;
-import com.extrawest.ocpi.model.dto.CredentialsDTO;
-import com.extrawest.ocpi.model.vo.CredentialsRole;
+import com.extrawest.ocpi.model.dto.Credentials;
+import com.extrawest.ocpi.model.dto.CredentialsRole;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,8 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class CredentialsResponseBddHandler extends IncomingMessageFieldsFactory<CredentialsDTO>
-        implements ResponseMessageFactory<CredentialsDTO> {
+public class CredentialsResponseBddHandler extends IncomingMessageFieldsFactory<Credentials>
+        implements ResponseMessageFactory<Credentials> {
     public static final String TOKEN_REQUIRED = "token";
     public static final String URL_REQUIRED = "url";
     public static final String ROLES_REQUIRED = "roles";
@@ -53,7 +53,7 @@ public class CredentialsResponseBddHandler extends IncomingMessageFieldsFactory<
     }
 
     @Override
-    public void validateAndAssertFieldsWithParams(Map<String, String> params, CredentialsDTO message) {
+    public void validateAndAssertFieldsWithParams(Map<String, String> params, Credentials message) {
         if (Objects.equals(params.size(), 1) && params.containsKey(wildCard)) {
             return;
         }
@@ -62,7 +62,7 @@ public class CredentialsResponseBddHandler extends IncomingMessageFieldsFactory<
     }
 
     @Override
-    public Class<CredentialsDTO> getClazz() {
-        return CredentialsDTO.class;
+    public Class<Credentials> getClazz() {
+        return Credentials.class;
     }
 }

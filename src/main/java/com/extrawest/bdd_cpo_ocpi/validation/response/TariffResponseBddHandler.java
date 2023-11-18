@@ -2,12 +2,12 @@ package com.extrawest.bdd_cpo_ocpi.validation.response;
 
 import com.extrawest.bdd_cpo_ocpi.validation.IncomingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.ResponseMessageFactory;
-import com.extrawest.ocpi.model.dto.TariffDTO;
-import com.extrawest.ocpi.model.dto.TariffElementDTO;
+import com.extrawest.ocpi.model.dto.DisplayText;
+import com.extrawest.ocpi.model.dto.Price;
+import com.extrawest.ocpi.model.dto.location.EnergyMix;
+import com.extrawest.ocpi.model.dto.tariff.Tariff;
+import com.extrawest.ocpi.model.dto.tariff.TariffElement;
 import com.extrawest.ocpi.model.enums.TariffType;
-import com.extrawest.ocpi.model.vo.DisplayText;
-import com.extrawest.ocpi.model.vo.EnergyMix;
-import com.extrawest.ocpi.model.vo.Price;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,8 +22,8 @@ import java.util.Objects;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class TariffResponseBddHandler extends IncomingMessageFieldsFactory<TariffDTO>
-        implements ResponseMessageFactory<TariffDTO> {
+public class TariffResponseBddHandler extends IncomingMessageFieldsFactory<Tariff>
+        implements ResponseMessageFactory<Tariff> {
 
     public static final String COUNTRY_CODE_REQUIRED = "country_code";
     public static final String PARTY_ID_REQUIRED = "party_id";
@@ -71,8 +71,8 @@ public class TariffResponseBddHandler extends IncomingMessageFieldsFactory<Tarif
                 },
                 ELEMENTS_REQUIRED, (req, elements) -> {
                     if (nonEqual(wildCard, elements)) {
-                        TariffElementDTO[] tariffElements =
-                                parseModelsFromJson(elements, ELEMENTS_REQUIRED, TariffElementDTO.class);
+                        TariffElement[] tariffElements =
+                                parseModelsFromJson(elements, ELEMENTS_REQUIRED, TariffElement.class);
                         req.setElements(List.of(tariffElements));
                     }
                 }
@@ -139,7 +139,7 @@ public class TariffResponseBddHandler extends IncomingMessageFieldsFactory<Tarif
         assertionFactory.put(LAST_UPDATED_REQUIRED, (expectedParams, actual) -> compareDateTimeIncludeWildCard(
                 expectedParams, actual.getLastUpdated(), LAST_UPDATED_REQUIRED));
         assertionFactory.put(ELEMENTS_REQUIRED, (expectedParams, actual) -> compareListIncludeWildCard(
-                expectedParams, actual.getElements(), ELEMENTS_REQUIRED, TariffElementDTO.class));
+                expectedParams, actual.getElements(), ELEMENTS_REQUIRED, TariffElement.class));
         assertionFactory.put(TYPE, (expectedParams, actual) -> compareEnumsIncludeWildCard(
                 expectedParams, actual.getType(), TYPE));
         assertionFactory.put(MIN_PRICE, (expectedParams, actual) -> compareObjectIncludeWildCard(
@@ -158,7 +158,7 @@ public class TariffResponseBddHandler extends IncomingMessageFieldsFactory<Tarif
     }
 
     @Override
-    public void validateAndAssertFieldsWithParams(Map<String, String> params, TariffDTO message) {
+    public void validateAndAssertFieldsWithParams(Map<String, String> params, Tariff message) {
         if (Objects.equals(params.size(), 1) && params.containsKey(wildCard)) {
             return;
         }
@@ -167,7 +167,7 @@ public class TariffResponseBddHandler extends IncomingMessageFieldsFactory<Tarif
     }
 
     @Override
-    public Class<TariffDTO> getClazz() {
-        return TariffDTO.class;
+    public Class<Tariff> getClazz() {
+        return Tariff.class;
     }
 }

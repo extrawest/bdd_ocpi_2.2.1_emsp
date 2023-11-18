@@ -4,7 +4,7 @@ import com.extrawest.bdd_cpo_ocpi.exception.BddTestingException;
 import com.extrawest.bdd_cpo_ocpi.exception.ValidationException;
 import com.extrawest.bdd_cpo_ocpi.utils.Generators;
 import com.extrawest.ocpi.exception.PropertyConstraintException;
-import com.extrawest.ocpi.model.OcpiRequestData;
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Setter;

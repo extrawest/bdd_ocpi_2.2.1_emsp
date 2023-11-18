@@ -3,10 +3,11 @@ package com.extrawest.bdd_cpo_ocpi.validation.request;
 import com.extrawest.bdd_cpo_ocpi.utils.Generators;
 import com.extrawest.bdd_cpo_ocpi.validation.OutgoingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.RequestMessageFactory;
-import com.extrawest.ocpi.model.dto.LocationDTO;
+import com.extrawest.ocpi.model.dto.BusinessDetails;
+import com.extrawest.ocpi.model.dto.DisplayText;
+import com.extrawest.ocpi.model.dto.location.*;
 import com.extrawest.ocpi.model.enums.Facility;
 import com.extrawest.ocpi.model.enums.ParkingType;
-import com.extrawest.ocpi.model.vo.*;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +20,8 @@ import java.util.Map;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class LocationRequestBddHandler extends OutgoingMessageFieldsFactory<LocationDTO>
-        implements RequestMessageFactory<LocationDTO> {
+public class LocationRequestBddHandler extends OutgoingMessageFieldsFactory<Location>
+        implements RequestMessageFactory<Location> {
     public static final String COUNTRY_CODE_REQUIRED = "country_code";
     public static final String PARTY_ID_REQUIRED = "party_id";
     public static final String ID_REQUIRED = "id";
@@ -79,8 +80,8 @@ public class LocationRequestBddHandler extends OutgoingMessageFieldsFactory<Loca
                     parseModelsFromJson(type, PUBLISH_ALLOWED_TO, PublishTokenType.class);
             req.setPublishAllowedTo(List.of(publishTokenTypes));
         });
-        this.optionalFieldsSetup.put(NAME, LocationDTO::setName);
-        this.optionalFieldsSetup.put(STATE, LocationDTO::setState);
+        this.optionalFieldsSetup.put(NAME, Location::setName);
+        this.optionalFieldsSetup.put(STATE, Location::setState);
         this.optionalFieldsSetup.put(RELATED_LOCATIONS, (req, locations) -> {
             AdditionalGeoLocation[] geoLocations =
                     parseModelsFromJson(locations, RELATED_LOCATIONS, AdditionalGeoLocation.class);
@@ -89,7 +90,7 @@ public class LocationRequestBddHandler extends OutgoingMessageFieldsFactory<Loca
         this.optionalFieldsSetup.put(PARKING_TYPE, (req, type) -> req.setParkingType(
                 parseEnum(type, PARKING_TYPE, ParkingType.class)));
         this.optionalFieldsSetup.put(EVSES, (req, locations) -> {
-            Evse[] evses = parseModelsFromJson(locations, EVSES, Evse.class);
+            EVSE[] evses = parseModelsFromJson(locations, EVSES, EVSE.class);
             req.setEvses(List.of(evses));
         });
         this.optionalFieldsSetup.put(DIRECTIONS, (req, text) -> {
@@ -130,8 +131,8 @@ public class LocationRequestBddHandler extends OutgoingMessageFieldsFactory<Loca
     }
 
     @Override
-    public LocationDTO createMessageWithValidatedParams(Map<String, String> params) {
-        LocationDTO locationDTO = super.createMessageWithValidatedParamsViaLibModel(params);
+    public Location createMessageWithValidatedParams(Map<String, String> params) {
+        Location locationDTO = super.createMessageWithValidatedParamsViaLibModel(params);
         log.info(getParameterizeClassName() + ": " + locationDTO);
         return locationDTO;
     }

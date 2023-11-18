@@ -2,8 +2,8 @@ package com.extrawest.bdd_cpo_ocpi.validation.response;
 
 import com.extrawest.bdd_cpo_ocpi.validation.IncomingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.ResponseMessageFactory;
-import com.extrawest.ocpi.model.dto.LocationDTO;
-import com.extrawest.ocpi.model.vo.GeoLocation;
+import com.extrawest.ocpi.model.dto.location.GeoLocation;
+import com.extrawest.ocpi.model.dto.location.Location;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,8 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class LocationResponseBddHandler extends IncomingMessageFieldsFactory<LocationDTO>
-        implements ResponseMessageFactory<LocationDTO> {
+public class LocationResponseBddHandler extends IncomingMessageFieldsFactory<Location>
+        implements ResponseMessageFactory<Location> {
     public static final String COUNTRY_CODE_REQUIRED = "country_code";
     public static final String PARTY_ID_REQUIRED = "party_id";
     public static final String ID_REQUIRED = "id";
@@ -126,7 +126,7 @@ public class LocationResponseBddHandler extends IncomingMessageFieldsFactory<Loc
     }
 
     @Override
-    public void validateAndAssertFieldsWithParams(Map<String, String> params, LocationDTO message) {
+    public void validateAndAssertFieldsWithParams(Map<String, String> params, Location message) {
         if (Objects.equals(params.size(), 1) && params.containsKey(wildCard)) {
             return;
         }
@@ -135,7 +135,7 @@ public class LocationResponseBddHandler extends IncomingMessageFieldsFactory<Loc
     }
 
     @Override
-    public Class<LocationDTO> getClazz() {
-        return LocationDTO.class;
+    public Class<Location> getClazz() {
+        return Location.class;
     }
 }

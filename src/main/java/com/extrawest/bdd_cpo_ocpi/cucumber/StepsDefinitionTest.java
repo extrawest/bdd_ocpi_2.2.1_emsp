@@ -14,16 +14,12 @@ import com.extrawest.bdd_cpo_ocpi.service.RequestHolder;
 import com.extrawest.bdd_cpo_ocpi.service.RequestService;
 import com.extrawest.bdd_cpo_ocpi.service.impl.ResponseParsingService;
 import com.extrawest.bdd_cpo_ocpi.utils.RepositoryUtils;
-import com.extrawest.ocpi.model.OcpiRequestData;
-import com.extrawest.ocpi.model.OcpiResponseData;
-import com.extrawest.ocpi.model.dto.CredentialsDTO;
-import com.extrawest.ocpi.model.dto.TokenDTO;
-import com.extrawest.ocpi.model.dto.response.VersionDetailsResponseDTO;
-import com.extrawest.ocpi.model.dto.response.VersionResponseDTO;
+import com.extrawest.ocpi.model.dto.*;
+import com.extrawest.ocpi.model.dto.token.Token;
 import com.extrawest.ocpi.model.enums.Role;
 import com.extrawest.ocpi.model.enums.status_codes.OcpiStatusCode;
-import com.extrawest.ocpi.model.vo.BusinessDetails;
-import com.extrawest.ocpi.model.vo.CredentialsRole;
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
+import com.extrawest.ocpi.model.markers.OcpiResponseData;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -151,7 +147,7 @@ public class StepsDefinitionTest extends ContainerBase {
 
     @Given("CPO is registered in eMSP system")
     public void registerCpo() {
-        CredentialsDTO credentials = getCredentials();
+        Credentials credentials = getCredentials();
         requestHolder.addHeaders(Map.of(
                 HttpHeaders.AUTHORIZATION, String.format(AUTHORIZATION_TOKEN, credentials.getToken()))
         );
@@ -268,8 +264,8 @@ public class StepsDefinitionTest extends ContainerBase {
         log.info("STEP {}: CPO send PUT {} into eMSP system", stepNumber, messageType);
     }
 
-    public CredentialsDTO getCredentials() {
-        CredentialsDTO cpoCredentials = new CredentialsDTO();
+    public Credentials getCredentials() {
+        Credentials cpoCredentials = new Credentials();
         cpoCredentials.setUrl(cpoConfig.getVersionUrl());
         cpoCredentials.setToken(cpoConfig.getTokenA());
         CredentialsRole credentialsRole = CredentialsRole.builder()
@@ -287,7 +283,7 @@ public class StepsDefinitionTest extends ContainerBase {
 
         checkResponseIsSuccess();
 
-        CredentialsDTO emspCredentials = (CredentialsDTO)
+        Credentials emspCredentials = (Credentials)
                 messagingService.createResponseBody(implementedType, response);
 
         credentialsRepository.setEmspCredentials(emspCredentials);
@@ -356,7 +352,7 @@ public class StepsDefinitionTest extends ContainerBase {
         response = sendRequest(Method.GET, implementedType);
         checkResponseIsSuccess();
 
-        List<VersionResponseDTO> versionsList = ResponseParsingService.parseList(response, VersionResponseDTO.class);
+        List<Version> versionsList = ResponseParsingService.parseList(response, Version.class);
         versionsRepository.addAll(versionsList);
 
         log.info("Before tests: CPO received list of versions from eMSP");
@@ -367,7 +363,7 @@ public class StepsDefinitionTest extends ContainerBase {
         response = sendRequest(Method.GET, implementedType);
         checkResponseIsSuccess();
 
-        VersionDetailsResponseDTO details = (VersionDetailsResponseDTO)
+        VersionDetails details = (VersionDetails)
                 messagingService.createResponseBody(implementedType, response);
         versionDetailsRepository.addAll(details);
 
@@ -434,7 +430,7 @@ public class StepsDefinitionTest extends ContainerBase {
             throw new BddTestingException(EMPTY_EXPECTED_VALUE.getValue());
         }
         List<Map<String, String>> rows = table.asMaps(String.class, String.class);
-        responseListService.validateResponseListContains(rows, response, VersionResponseDTO.class);
+        responseListService.validateResponseListContains(rows, response, Version.class);
         log.info("STEP {}: Response is valid and fields are asserted", stepNumber);
     }
 
@@ -446,7 +442,7 @@ public class StepsDefinitionTest extends ContainerBase {
             throw new BddTestingException(EMPTY_EXPECTED_VALUE.getValue());
         }
         List<Map<String, String>> rows = table.asMaps(String.class, String.class);
-        responseListService.validateResponseListEquals(rows, response, TokenDTO.class, ImplementedMessageType.TOKENS);
+        responseListService.validateResponseListEquals(rows, response, Token.class, ImplementedMessageType.TOKENS);
         log.info("STEP {}: Response is valid and fields are asserted", stepNumber);
     }
 

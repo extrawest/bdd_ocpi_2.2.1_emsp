@@ -2,9 +2,9 @@ package com.extrawest.bdd_cpo_ocpi.validation.response;
 
 import com.extrawest.bdd_cpo_ocpi.validation.IncomingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.ResponseMessageFactory;
-import com.extrawest.ocpi.model.dto.response.VersionDetailsResponseDTO;
+import com.extrawest.ocpi.model.dto.Endpoint;
+import com.extrawest.ocpi.model.dto.VersionDetails;
 import com.extrawest.ocpi.model.enums.VersionNumber;
-import com.extrawest.ocpi.model.vo.Endpoint;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +19,8 @@ import java.util.Objects;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class VersionDetailsResponseBddHandler extends IncomingMessageFieldsFactory<VersionDetailsResponseDTO>
-        implements ResponseMessageFactory<VersionDetailsResponseDTO> {
+public class VersionDetailsResponseBddHandler extends IncomingMessageFieldsFactory<VersionDetails>
+        implements ResponseMessageFactory<VersionDetails> {
     public static final String VERSION_NUMBER_REQUIRED = "version";
     public static final String ENDPOINTS_REQUIRED = "endpoints";
 
@@ -49,7 +49,7 @@ public class VersionDetailsResponseBddHandler extends IncomingMessageFieldsFacto
 
 
     @Override
-    public void validateAndAssertFieldsWithParams(Map<String, String> params, VersionDetailsResponseDTO message) {
+    public void validateAndAssertFieldsWithParams(Map<String, String> params, VersionDetails message) {
         if (Objects.equals(params.size(), 1) && params.containsKey(wildCard)) {
             return;
         }
@@ -58,7 +58,7 @@ public class VersionDetailsResponseBddHandler extends IncomingMessageFieldsFacto
     }
 
     @Override
-    public Class<VersionDetailsResponseDTO> getClazz() {
-        return VersionDetailsResponseDTO.class;
+    public Class<VersionDetails> getClazz() {
+        return VersionDetails.class;
     }
 }
