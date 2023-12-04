@@ -5,7 +5,7 @@ import com.extrawest.bdd_cpo_ocpi.validation.ResponseMessageFactory;
 import com.extrawest.ocpi.model.dto.DisplayText;
 import com.extrawest.ocpi.model.dto.Price;
 import com.extrawest.ocpi.model.dto.location.EnergyMix;
-import com.extrawest.ocpi.model.dto.tariff.Tariff;
+import com.extrawest.ocpi.model.dto.tariff.TariffDto;
 import com.extrawest.ocpi.model.dto.tariff.TariffElement;
 import com.extrawest.ocpi.model.enums.TariffType;
 import jakarta.annotation.PostConstruct;
@@ -22,8 +22,8 @@ import java.util.Objects;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class TariffResponseBddHandler extends IncomingMessageFieldsFactory<Tariff>
-        implements ResponseMessageFactory<Tariff> {
+public class TariffResponseBddHandler extends IncomingMessageFieldsFactory<TariffDto>
+        implements ResponseMessageFactory<TariffDto> {
 
     public static final String COUNTRY_CODE_REQUIRED = "country_code";
     public static final String PARTY_ID_REQUIRED = "party_id";
@@ -158,7 +158,7 @@ public class TariffResponseBddHandler extends IncomingMessageFieldsFactory<Tarif
     }
 
     @Override
-    public void validateAndAssertFieldsWithParams(Map<String, String> params, Tariff message) {
+    public void validateAndAssertFieldsWithParams(Map<String, String> params, TariffDto message) {
         if (Objects.equals(params.size(), 1) && params.containsKey(wildCard)) {
             return;
         }
@@ -167,7 +167,7 @@ public class TariffResponseBddHandler extends IncomingMessageFieldsFactory<Tarif
     }
 
     @Override
-    public Class<Tariff> getClazz() {
-        return Tariff.class;
+    public Class<TariffDto> getClazz() {
+        return TariffDto.class;
     }
 }

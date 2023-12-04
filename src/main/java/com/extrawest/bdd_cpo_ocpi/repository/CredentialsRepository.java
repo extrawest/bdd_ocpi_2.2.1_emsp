@@ -1,9 +1,9 @@
 package com.extrawest.bdd_cpo_ocpi.repository;
 
-import com.extrawest.ocpi.model.dto.Credentials;
+import com.extrawest.ocpi.model.dto.CredentialsDto;
 
 public interface CredentialsRepository {
-    Credentials getEmspCredentials();
+    CredentialsDto getEmspCredentials();
 
-    void setEmspCredentials(Credentials emspCredentials);
+    void setEmspCredentials(CredentialsDto emspCredentials);
 }

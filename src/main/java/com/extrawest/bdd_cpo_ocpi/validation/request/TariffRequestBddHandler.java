@@ -6,7 +6,7 @@ import com.extrawest.bdd_cpo_ocpi.validation.RequestMessageFactory;
 import com.extrawest.ocpi.model.dto.DisplayText;
 import com.extrawest.ocpi.model.dto.Price;
 import com.extrawest.ocpi.model.dto.location.EnergyMix;
-import com.extrawest.ocpi.model.dto.tariff.Tariff;
+import com.extrawest.ocpi.model.dto.tariff.TariffDto;
 import com.extrawest.ocpi.model.dto.tariff.TariffElement;
 import com.extrawest.ocpi.model.enums.TariffType;
 import jakarta.annotation.PostConstruct;
@@ -21,8 +21,8 @@ import java.util.Map;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class TariffRequestBddHandler extends OutgoingMessageFieldsFactory<Tariff>
-        implements RequestMessageFactory<Tariff> {
+public class TariffRequestBddHandler extends OutgoingMessageFieldsFactory<TariffDto>
+        implements RequestMessageFactory<TariffDto> {
 
     public static final String COUNTRY_CODE_REQUIRED = "country_code";
     public static final String PARTY_ID_REQUIRED = "party_id";
@@ -108,8 +108,8 @@ public class TariffRequestBddHandler extends OutgoingMessageFieldsFactory<Tariff
     }
 
     @Override
-    public Tariff createMessageWithValidatedParams(Map<String, String> params) {
-        Tariff tariffDTO = super.createMessageWithValidatedParamsViaLibModel(params);
+    public TariffDto createMessageWithValidatedParams(Map<String, String> params) {
+        TariffDto tariffDTO = super.createMessageWithValidatedParamsViaLibModel(params);
         log.info(getParameterizeClassName() + ": " + tariffDTO);
         return tariffDTO;
     }

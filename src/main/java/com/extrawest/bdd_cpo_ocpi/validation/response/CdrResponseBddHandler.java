@@ -4,11 +4,11 @@ import com.extrawest.bdd_cpo_ocpi.validation.IncomingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.ResponseMessageFactory;
 import com.extrawest.ocpi.model.dto.ChargingPeriod;
 import com.extrawest.ocpi.model.dto.Price;
-import com.extrawest.ocpi.model.dto.cdr.CDR;
+import com.extrawest.ocpi.model.dto.cdr.CDRDto;
 import com.extrawest.ocpi.model.dto.cdr.CdrLocation;
 import com.extrawest.ocpi.model.dto.cdr.CdrToken;
 import com.extrawest.ocpi.model.dto.cdr.SignedData;
-import com.extrawest.ocpi.model.dto.tariff.Tariff;
+import com.extrawest.ocpi.model.dto.tariff.TariffDto;
 import com.extrawest.ocpi.model.enums.AuthMethod;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +22,8 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class CdrResponseBddHandler extends IncomingMessageFieldsFactory<CDR>
-        implements ResponseMessageFactory<CDR> {
+public class CdrResponseBddHandler extends IncomingMessageFieldsFactory<CDRDto>
+        implements ResponseMessageFactory<CDRDto> {
     public static final String COUNTRY_CODE_REQUIRED = "country_code";
     public static final String PARTY_ID_REQUIRED = "party_id";
     public static final String ID_REQUIRED = "id";
@@ -146,7 +146,7 @@ public class CdrResponseBddHandler extends IncomingMessageFieldsFactory<CDR>
         });
         this.optionalFieldsSetup.put(TARIFFS, (req, tariffs) -> {
             if (nonEqual(wildCard, tariffs)) {
-                Tariff[] tariffsDtos = parseModelsFromJson(tariffs, TARIFFS, Tariff.class);
+                TariffDto[] tariffsDtos = parseModelsFromJson(tariffs, TARIFFS, TariffDto.class);
                 req.setTariffs(List.of(tariffsDtos));
             }
         });
@@ -249,7 +249,7 @@ public class CdrResponseBddHandler extends IncomingMessageFieldsFactory<CDR>
         assertionFactory.put(TOTAL_TIME_REQUIRED, (expectedParams, actual) -> compareFloatIncludeWildCard(
                 expectedParams, actual.getTotalTime(), TOTAL_TIME_REQUIRED));
         assertionFactory.put(TARIFFS, (expectedParams, actual) -> compareListIncludeWildCard(
-                expectedParams, actual.getTariffs(), TARIFFS, Tariff.class));
+                expectedParams, actual.getTariffs(), TARIFFS, TariffDto.class));
         assertionFactory.put(SIGNED_DATA, (expectedParams, actual) -> compareObjectIncludeWildCard(
                 expectedParams, actual.getSignedData(), SIGNED_DATA, SignedData.class));
         assertionFactory.put(TOTAL_FIXED_COST, (expectedParams, actual) -> compareObjectIncludeWildCard(
@@ -277,7 +277,7 @@ public class CdrResponseBddHandler extends IncomingMessageFieldsFactory<CDR>
     }
 
     @Override
-    public void validateAndAssertFieldsWithParams(Map<String, String> params, CDR message) {
+    public void validateAndAssertFieldsWithParams(Map<String, String> params, CDRDto message) {
         if (Objects.equals(params.size(), 1) && params.containsKey(wildCard)) {
             return;
         }
@@ -286,7 +286,7 @@ public class CdrResponseBddHandler extends IncomingMessageFieldsFactory<CDR>
     }
 
     @Override
-    public Class<CDR> getClazz() {
-        return CDR.class;
+    public Class<CDRDto> getClazz() {
+        return CDRDto.class;
     }
 }

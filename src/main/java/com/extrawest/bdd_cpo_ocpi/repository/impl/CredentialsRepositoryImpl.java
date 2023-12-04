@@ -1,18 +1,18 @@
 package com.extrawest.bdd_cpo_ocpi.repository.impl;
 
 import com.extrawest.bdd_cpo_ocpi.repository.CredentialsRepository;
-import com.extrawest.ocpi.model.dto.Credentials;
+import com.extrawest.ocpi.model.dto.CredentialsDto;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CredentialsRepositoryImpl implements CredentialsRepository {
-    private Credentials emspCredentials;
+    private CredentialsDto emspCredentials;
 
-    public Credentials getEmspCredentials() {
+    public CredentialsDto getEmspCredentials() {
         return this.emspCredentials;
     }
 
-    public void setEmspCredentials(Credentials emspCredentials) {
+    public void setEmspCredentials(CredentialsDto emspCredentials) {
         this.emspCredentials = emspCredentials;
     }
 }

@@ -2,7 +2,7 @@ package com.extrawest.bdd_cpo_ocpi.validation.response;
 
 import com.extrawest.bdd_cpo_ocpi.validation.IncomingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.ResponseMessageFactory;
-import com.extrawest.ocpi.model.dto.Credentials;
+import com.extrawest.ocpi.model.dto.CredentialsDto;
 import com.extrawest.ocpi.model.dto.CredentialsRole;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +15,8 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class CredentialsResponseBddHandler extends IncomingMessageFieldsFactory<Credentials>
-        implements ResponseMessageFactory<Credentials> {
+public class CredentialsResponseBddHandler extends IncomingMessageFieldsFactory<CredentialsDto>
+        implements ResponseMessageFactory<CredentialsDto> {
     public static final String TOKEN_REQUIRED = "token";
     public static final String URL_REQUIRED = "url";
     public static final String ROLES_REQUIRED = "roles";
@@ -53,7 +53,7 @@ public class CredentialsResponseBddHandler extends IncomingMessageFieldsFactory<
     }
 
     @Override
-    public void validateAndAssertFieldsWithParams(Map<String, String> params, Credentials message) {
+    public void validateAndAssertFieldsWithParams(Map<String, String> params, CredentialsDto message) {
         if (Objects.equals(params.size(), 1) && params.containsKey(wildCard)) {
             return;
         }
@@ -62,7 +62,7 @@ public class CredentialsResponseBddHandler extends IncomingMessageFieldsFactory<
     }
 
     @Override
-    public Class<Credentials> getClazz() {
-        return Credentials.class;
+    public Class<CredentialsDto> getClazz() {
+        return CredentialsDto.class;
     }
 }

@@ -5,7 +5,7 @@ import com.extrawest.bdd_cpo_ocpi.validation.OutgoingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.RequestMessageFactory;
 import com.extrawest.ocpi.model.dto.ChargingPeriod;
 import com.extrawest.ocpi.model.dto.Price;
-import com.extrawest.ocpi.model.dto.cdr.CDR;
+import com.extrawest.ocpi.model.dto.cdr.CDRDto;
 import com.extrawest.ocpi.model.dto.cdr.CdrLocation;
 import com.extrawest.ocpi.model.dto.cdr.CdrToken;
 import com.extrawest.ocpi.model.enums.AuthMethod;
@@ -21,8 +21,8 @@ import java.util.Map;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class CdrRequestBddHandler extends OutgoingMessageFieldsFactory<CDR>
-        implements RequestMessageFactory<CDR> {
+public class CdrRequestBddHandler extends OutgoingMessageFieldsFactory<CDRDto>
+        implements RequestMessageFactory<CDRDto> {
     public static final String COUNTRY_CODE_REQUIRED = "country_code";
     public static final String PARTY_ID_REQUIRED = "party_id";
     public static final String ID_REQUIRED = "id";
@@ -91,8 +91,8 @@ public class CdrRequestBddHandler extends OutgoingMessageFieldsFactory<CDR>
     }
 
     @Override
-    public CDR createMessageWithValidatedParams(Map<String, String> params) {
-        CDR CDRDto = super.createMessageWithValidatedParamsViaLibModel(params);
+    public CDRDto createMessageWithValidatedParams(Map<String, String> params) {
+        CDRDto CDRDto = super.createMessageWithValidatedParamsViaLibModel(params);
         log.info(getParameterizeClassName() + ": " + CDRDto);
         return CDRDto;
     }

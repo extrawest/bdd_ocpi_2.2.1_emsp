@@ -7,7 +7,7 @@ import com.extrawest.bdd_cpo_ocpi.validation.response.*;
 import com.extrawest.ocpi.model.dto.*;
 import com.extrawest.ocpi.model.dto.location.Connector;
 import com.extrawest.ocpi.model.dto.location.Location;
-import com.extrawest.ocpi.model.dto.tariff.Tariff;
+import com.extrawest.ocpi.model.dto.tariff.TariffDto;
 import com.extrawest.ocpi.model.markers.OcpiRequestData;
 import com.extrawest.ocpi.model.markers.OcpiResponseData;
 import jakarta.annotation.PostConstruct;
@@ -138,23 +138,23 @@ public class AssertionAndValidationServiceImpl implements AssertionAndValidation
     public ImplementedMessageType validateAndAssertFields(OcpiResponseData responseData,
                                                           Map<String, String> parameters) {
         validateResponseWithLibModel(responseData);
-        if (responseData instanceof Tariff response) {
+        if (responseData instanceof TariffDto response) {
             tariffResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return TARIFF;
         }
-        if (responseData instanceof VersionDetails response) {
+        if (responseData instanceof VersionDetailsDto response) {
             versionDetailsResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return VERSION_DETAILS;
         }
-        if (responseData instanceof Version response) {
+        if (responseData instanceof VersionDto response) {
             versionResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return VERSION;
         }
-        if (responseData instanceof Session response) {
+        if (responseData instanceof SessionDto response) {
             sessionResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return SESSION;
         }
-        if (responseData instanceof com.extrawest.ocpi.model.dto.cdr.CDR response) {
+        if (responseData instanceof com.extrawest.ocpi.model.dto.cdr.CDRDto response) {
             cdrResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return CDR;
         }
@@ -170,11 +170,11 @@ public class AssertionAndValidationServiceImpl implements AssertionAndValidation
             connectorResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return CONNECTOR;
         }
-        if (responseData instanceof AuthorizationInfo response) {
+        if (responseData instanceof AuthorizationInfoDto response) {
             authorizationInfoBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return AUTHORIZATION_INFO;
         }
-        if (responseData instanceof Credentials response) {
+        if (responseData instanceof CredentialsDto response) {
             credentialsResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return CREDENTIALS;
         } else {

@@ -3,7 +3,7 @@ package com.extrawest.bdd_cpo_ocpi.validation.request;
 import com.extrawest.bdd_cpo_ocpi.validation.OutgoingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.RequestMessageFactory;
 import com.extrawest.ocpi.model.dto.token.EnergyContract;
-import com.extrawest.ocpi.model.dto.token.Token;
+import com.extrawest.ocpi.model.dto.token.TokenDto;
 import com.extrawest.ocpi.model.enums.ProfileType;
 import com.extrawest.ocpi.model.enums.TokenType;
 import com.extrawest.ocpi.model.enums.WhitelistType;
@@ -18,8 +18,8 @@ import java.util.Map;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class TokenRequestBddHandler extends OutgoingMessageFieldsFactory<Token>
-        implements RequestMessageFactory<Token> {
+public class TokenRequestBddHandler extends OutgoingMessageFieldsFactory<TokenDto>
+        implements RequestMessageFactory<TokenDto> {
     public static final String COUNTRY_CODE_REQUIRED = "country_code";
     public static final String PARTY_ID_REQUIRED = "party_id";
     public static final String UID_REQUIRED = "uid";
@@ -57,9 +57,9 @@ public class TokenRequestBddHandler extends OutgoingMessageFieldsFactory<Token>
                         parseLocalDateTimeOrGenerateRandom(lastUpdated, LAST_UPDATED_REQUIRED)));
 
         this.optionalFieldsSetup = new HashMap<>();
-        this.optionalFieldsSetup.put(VISUAL_NUMBER, Token::setVisualNumber);
-        this.optionalFieldsSetup.put(GROUP_ID, Token::setGroupId);
-        this.optionalFieldsSetup.put(LANGUAGE, Token::setLanguage);
+        this.optionalFieldsSetup.put(VISUAL_NUMBER, TokenDto::setVisualNumber);
+        this.optionalFieldsSetup.put(GROUP_ID, TokenDto::setGroupId);
+        this.optionalFieldsSetup.put(LANGUAGE, TokenDto::setLanguage);
         this.optionalFieldsSetup.put(DEFAULT_PROFILE_TYPE, (req, type) -> req.setDefaultProfileType(
                 parseEnum(type, DEFAULT_PROFILE_TYPE, ProfileType.class)));
         this.optionalFieldsSetup.put(ENERGY_CONTRACT, (req, energyContract) -> req.setEnergyContract(
@@ -67,8 +67,8 @@ public class TokenRequestBddHandler extends OutgoingMessageFieldsFactory<Token>
     }
 
     @Override
-    public Token createMessageWithValidatedParams(Map<String, String> params) {
-        Token cdrDTO = super.createMessageWithValidatedParamsViaLibModel(params);
+    public TokenDto createMessageWithValidatedParams(Map<String, String> params) {
+        TokenDto cdrDTO = super.createMessageWithValidatedParamsViaLibModel(params);
         log.info(getParameterizeClassName() + ": " + cdrDTO);
         return cdrDTO;
     }

@@ -2,7 +2,7 @@ package com.extrawest.bdd_cpo_ocpi.validation.request;
 
 import com.extrawest.bdd_cpo_ocpi.validation.OutgoingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.RequestMessageFactory;
-import com.extrawest.ocpi.model.dto.LocationReferences;
+import com.extrawest.ocpi.model.dto.LocationReferencesDto;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,8 +16,8 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 public class LocationReferencesBddHandler
-        extends OutgoingMessageFieldsFactory<LocationReferences>
-        implements RequestMessageFactory<LocationReferences> {
+        extends OutgoingMessageFieldsFactory<LocationReferencesDto>
+        implements RequestMessageFactory<LocationReferencesDto> {
 
     public static final String LOCATION_ID_REQUIRED = "location_id";
     public static final String EVSE_UIDS = "evse_uids";
@@ -41,8 +41,8 @@ public class LocationReferencesBddHandler
     }
 
     @Override
-    public LocationReferences createMessageWithValidatedParams(Map<String, String> params) {
-        LocationReferences locationReferences = super.createMessageWithValidatedParamsViaLibModel(params);
+    public LocationReferencesDto createMessageWithValidatedParams(Map<String, String> params) {
+        LocationReferencesDto locationReferences = super.createMessageWithValidatedParamsViaLibModel(params);
         log.info(getParameterizeClassName() + ": " + locationReferences);
         return locationReferences;
     }
