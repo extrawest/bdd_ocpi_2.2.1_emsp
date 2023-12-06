@@ -210,6 +210,9 @@ public abstract class IncomingMessageFieldsFactory<T extends OcpiRequestData> {
     protected boolean compareDateTimeIncludeWildCard(Map<String, String> expectedParams,
                                                      LocalDateTime actual, String fieldName) {
         String expected = expectedParams.get(fieldName);
+        if (expected == null) {
+            return actual == null;
+        }
         boolean result = Objects.equals(expected, wildCard)
                 || Objects.equals(actual, LocalDateTime.parse(expected));
 

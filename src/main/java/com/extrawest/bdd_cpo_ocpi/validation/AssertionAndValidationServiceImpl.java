@@ -177,7 +177,8 @@ public class AssertionAndValidationServiceImpl implements AssertionAndValidation
         if (responseData instanceof CredentialsDto response) {
             credentialsResponseBddHandler.validateAndAssertFieldsWithParams(parameters, response);
             return CREDENTIALS;
-        } else {
+        }
+        else {
             throw new BddTestingException(INVALID_RESPONSE_TYPE.getValue() + responseData);
         }
     }

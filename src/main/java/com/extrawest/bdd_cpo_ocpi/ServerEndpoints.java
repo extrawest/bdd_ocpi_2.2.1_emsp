@@ -41,18 +41,18 @@ public class ServerEndpoints {
         urls.put(ImplementedMessageType.SESSION, () -> versionDetailsRepository.getEndpoint(ModuleID.SESSIONS).getUrl());
         urls.put(ImplementedMessageType.CDR, () -> versionDetailsRepository.getEndpoint(ModuleID.CDRS).getUrl());
         urls.put(ImplementedMessageType.LOCATION, () -> versionDetailsRepository.getEndpoint(ModuleID.LOCATIONS).getUrl()
-                + "{country_code}/{party_id}/{location_id}");
+                + "/{country_code}/{party_id}/{location_id}");
         urls.put(ImplementedMessageType.EVSE, () -> versionDetailsRepository.getEndpoint(ModuleID.LOCATIONS).getUrl()
-                + "{country_code}/{party_id}/{location_id}/{evse_uid}");
+                + "/{country_code}/{party_id}/{location_id}/{evse_uid}");
         urls.put(ImplementedMessageType.CONNECTOR,
                 () -> versionDetailsRepository.getEndpoint(ModuleID.LOCATIONS).getUrl()
-                + "{country_code}/{party_id}/{location_id}/{evse_uid}/{connector_id}");
+                + "/{country_code}/{party_id}/{location_id}/{evse_uid}/{connector_id}");
         urls.put(ImplementedMessageType.TOKENS, () -> versionDetailsRepository.getEndpoint(ModuleID.TOKENS).getUrl());
         urls.put(ImplementedMessageType.AUTHORIZE, () ->
                 String.format("%s%s", versionDetailsRepository.getEndpoint(ModuleID.TOKENS).getUrl(),
-                        "{token_uid}/authorize"));
+                        "/{token_uid}/authorize"));
         urls.put(ImplementedMessageType.COMMAND, () -> versionDetailsRepository.getEndpoint(ModuleID.COMMANDS).getUrl()
-                + "{command_type}/{unique_id}");
+                + "/{command_type}/{unique_id}");
         urls.put(ImplementedMessageType.VERSION_DETAILS,
                 () -> versionsRepository.getVersionDetailsUrl(VersionNumber.V_2_2_1));
         urls.put(ImplementedMessageType.CREDENTIALS,

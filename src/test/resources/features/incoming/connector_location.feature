@@ -1,7 +1,8 @@
 Feature: CPO can add or retrieve Connectors
 
   Scenario: CPO checks connector in eMSP system
-    Given eMSP has "locations" data "db/locations.json"
+    Given CPO is registered in eMSP system
+    And eMSP has "locations" data "db/locations.json"
     When "location_id" path param is "LOC1"
     And "evse_uid" path param is "3256"
     And "party_id" path param is "BEC"
@@ -19,7 +20,8 @@ Feature: CPO can add or retrieve Connectors
       | last_updated | 2022-06-06T20:39:09 |
 
   Scenario: CPO add EVSE in eMSP system
-    Given eMSP has "locations" data "db/locations.json"
+    Given CPO is registered in eMSP system
+    And eMSP has "locations" data "db/locations.json"
     When "location_id" path param is "LOC1"
     And "evse_uid" path param is "3256"
     And "party_id" path param is "BEC"
@@ -34,4 +36,4 @@ Feature: CPO can add or retrieve Connectors
       | max_amperage | 16                  |
       | tariff_ids   | 11                  |
       | last_updated | 2022-06-06T20:39:09 |
-    And response is success
+    Then response is success

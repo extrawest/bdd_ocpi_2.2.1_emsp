@@ -1,7 +1,7 @@
 Feature: eMSP Server returns credentials
 
-  Scenario: The client receives credentials
+  Scenario: Already registered client can not be registered one more time
     Given CPO is registered in eMSP system
-    And eMSP has "cdrs" data "db/cdrs.json"
-    When CPO checks "cdr" with "id" "1" in eMSP system
-    Then response is success
+    When CPO post "credentials" in eMSP system with data
+    |any|
+    Then eMSP responded with HTTP status 405

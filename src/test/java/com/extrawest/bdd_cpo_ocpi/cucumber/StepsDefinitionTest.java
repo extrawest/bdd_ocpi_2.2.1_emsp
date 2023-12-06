@@ -124,6 +124,7 @@ public class StepsDefinitionTest extends ContainerBase {
     @BeforeStep
     public void stepIncrease() {
         stepNumber++;
+        requestHolder.setBody(null);
     }
 
     @After

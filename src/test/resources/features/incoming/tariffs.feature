@@ -1,10 +1,8 @@
-#Scenario need to have party_id, country_code and tariff_id in first request.
-#For next steps this values are stored in scenario scope. They are not shared between scenarios
-
 Feature: CPO adds, removes or checks the status of a Tariff in the eMSP’s system
 
   Scenario: CPO removes his Tariff object which is not used any more and will not be used in the future from eMSP system (1)
-    Given eMSP has "tariffs" data "db/tariffs.json"
+    Given CPO is registered in eMSP system
+    And eMSP has "tariffs" data "db/tariffs.json"
     When CPO with "party_id" "BEC" and "country_code" "DE" removes his "tariff" with "tariff_id" "Green5"
     And response is success
     Then "tariff" is absent
@@ -12,7 +10,8 @@ Feature: CPO adds, removes or checks the status of a Tariff in the eMSP’s syst
     And eMSP responded with OCPI status 2000
 
   Scenario: CPO removes his Tariff object which is not used any more and will not be used in the future from eMSP system (2)
-    Given CPO with "party_id" "BEC" and "country_code" "DE" put "tariff" with "tariff_id" "Green5" in eMSP system with data
+    Given CPO is registered in eMSP system
+    When CPO with "party_id" "BEC" and "country_code" "DE" put "tariff" with "tariff_id" "Green5" in eMSP system with data
       | any |
     And response is success
     When CPO removes his "tariff"
@@ -20,6 +19,7 @@ Feature: CPO adds, removes or checks the status of a Tariff in the eMSP’s syst
     Then "tariff" is absent
 
   Scenario: eMSP allows changing only Tariff that are owned by current CPO
+    Given CPO is registered in eMSP system
     When CPO with "party_id" "BEC" and "country_code" "US" put "tariff" with "tariff_id" "Green7" in eMSP system with data
       | country_code | US                                                                                   |
       | party_id     | BEC                                                                                  |
@@ -31,6 +31,7 @@ Feature: CPO adds, removes or checks the status of a Tariff in the eMSP’s syst
     And eMSP responded with HTTP status 400
 
   Scenario: eMSP allows changing only Tariff that are owned by current CPO
+    Given CPO is registered in eMSP system
     When CPO with "party_id" "BEC" and "country_code" "US" put "tariff" with "tariff_id" "Green7" in eMSP system with data
       | country_code | DE                                                                                   |
       | party_id     | NOT_BEC                                                                              |
@@ -41,7 +42,8 @@ Feature: CPO adds, removes or checks the status of a Tariff in the eMSP’s syst
     Then eMSP responded with HTTP status 400
 
   Scenario: CPO retrieves his Tariff as it is stored in the eMSP’s system
-    Given eMSP has "tariffs" data "db/tariffs.json"
+    Given CPO is registered in eMSP system
+    And eMSP has "tariffs" data "db/tariffs.json"
     When CPO with "party_id" "BEC" and "country_code" "DE" checks "tariff" with "tariff_id" "Green5" in eMSP system
     Then "tariff" response is valid and has data
       | country_code    | DE                                                                                                  |
@@ -87,7 +89,8 @@ Feature: CPO adds, removes or checks the status of a Tariff in the eMSP’s syst
       | last_updated    | any   |
 
   Scenario: CPO updates his Tariff in eMSP system
-    Given CPO with "party_id" "BEC" and "country_code" "DE" put "tariff" with "tariff_id" "12" in eMSP system with data
+    Given CPO is registered in eMSP system
+    When CPO with "party_id" "BEC" and "country_code" "DE" put "tariff" with "tariff_id" "12" in eMSP system with data
       | country_code | DE                                                                                   |
       | party_id     | BEC                                                                                  |
       | id           | 12                                                                                   |
@@ -122,7 +125,8 @@ Feature: CPO adds, removes or checks the status of a Tariff in the eMSP’s syst
 
 
   Scenario: CPO retrieves his Tariff as it is stored in the eMSP’s system (1)
-    Given CPO with "party_id" "BEC" and "country_code" "DE" put "tariff" with "tariff_id" "12" in eMSP system with data
+    Given CPO is registered in eMSP system
+    When CPO with "party_id" "BEC" and "country_code" "DE" put "tariff" with "tariff_id" "12" in eMSP system with data
       | country_code | DE                                                                                   |
       | party_id     | BEC                                                                                  |
       | id           | 12                                                                                   |
@@ -132,12 +136,14 @@ Feature: CPO adds, removes or checks the status of a Tariff in the eMSP’s syst
     And response is success
 
   Scenario: CPO retrieves his Tariff as it is stored in the eMSP’s system (2)
+    Given CPO is registered in eMSP system
     Given CPO with "party_id" "BEC" and "country_code" "DE" put "tariff" with "tariff_id" "12" in eMSP system with data
       | any |
     And response is success
 
   Scenario: CPO retrieves his Tariff as it is stored in the eMSP’s system (3)
-    Given CPO with "party_id" "BEC" and "country_code" "DE" put "tariff" with "tariff_id" "12" in eMSP system with data
+    Given CPO is registered in eMSP system
+    When CPO with "party_id" "BEC" and "country_code" "DE" put "tariff" with "tariff_id" "12" in eMSP system with data
       | country_code | any |
       | party_id     | any |
       | id           | any |
@@ -147,7 +153,8 @@ Feature: CPO adds, removes or checks the status of a Tariff in the eMSP’s syst
     And response is success
 
   Scenario: CPO retrieves his Tariff as it is stored in the eMSP’s system (4)
-    Given CPO with "party_id" "BEC" and "country_code" "DE" put "tariff" with "tariff_id" "12" in eMSP system with data
+    Given CPO is registered in eMSP system
+    When CPO with "party_id" "BEC" and "country_code" "DE" put "tariff" with "tariff_id" "12" in eMSP system with data
       | country_code    | any |
       | party_id        | any |
       | id              | any |
@@ -165,7 +172,8 @@ Feature: CPO adds, removes or checks the status of a Tariff in the eMSP’s syst
     And response is success
 
   Scenario: CPO retrieves his Tariff as it is stored in the eMSP’s system (5)
-    Given CPO with "party_id" "BEC" and "country_code" "DE" put "tariff" with "tariff_id" "12" in eMSP system with data
+    Given CPO is registered in eMSP system
+    When CPO with "party_id" "BEC" and "country_code" "DE" put "tariff" with "tariff_id" "12" in eMSP system with data
       | country_code    | DE                                                                                                                          |
       | party_id        | BEC                                                                                                                         |
       | id              | 12                                                                                                                          |
