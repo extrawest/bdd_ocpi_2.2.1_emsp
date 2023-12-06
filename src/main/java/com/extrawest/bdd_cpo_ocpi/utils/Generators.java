@@ -1,10 +1,14 @@
 package com.extrawest.bdd_cpo_ocpi.utils;
 
-import com.extrawest.ocpi.model.OcpiRequestData;
-import com.extrawest.ocpi.model.dto.PriceComponentDTO;
-import com.extrawest.ocpi.model.dto.TariffElementDTO;
+import com.extrawest.ocpi.model.dto.*;
+import com.extrawest.ocpi.model.dto.cdr.CdrLocation;
+import com.extrawest.ocpi.model.dto.cdr.CdrToken;
+import com.extrawest.ocpi.model.dto.location.Connector;
+import com.extrawest.ocpi.model.dto.location.GeoLocation;
+import com.extrawest.ocpi.model.dto.tariff.PriceComponent;
+import com.extrawest.ocpi.model.dto.tariff.TariffElement;
 import com.extrawest.ocpi.model.enums.*;
-import com.extrawest.ocpi.model.vo.*;
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.jetbrains.annotations.NotNull;
@@ -83,17 +87,17 @@ public class Generators {
         return randomInteger(leftLimit, rightLimit);
     }
 
-    public static TariffElementDTO generateTariffElement() {
-        TariffElementDTO element = new TariffElementDTO();
-        List<PriceComponentDTO> components = new ArrayList<>();
-        PriceComponentDTO priceComponentDTO = generatePriceComponent();
+    public static TariffElement generateTariffElement() {
+        TariffElement element = new TariffElement();
+        List<PriceComponent> components = new ArrayList<>();
+        PriceComponent priceComponentDTO = generatePriceComponent();
         components.add(priceComponentDTO);
         element.setPriceComponents(components);
         return element;
     }
 
-    private static PriceComponentDTO generatePriceComponent() {
-        PriceComponentDTO component = new PriceComponentDTO();
+    private static PriceComponent generatePriceComponent() {
+        PriceComponent component = new PriceComponent();
         component.setType(randomEnum(TariffDimensionType.class));
         component.setPrice(randomFloat());
         return component;

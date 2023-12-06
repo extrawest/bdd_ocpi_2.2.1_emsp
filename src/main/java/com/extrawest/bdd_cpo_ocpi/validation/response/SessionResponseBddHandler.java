@@ -2,12 +2,12 @@ package com.extrawest.bdd_cpo_ocpi.validation.response;
 
 import com.extrawest.bdd_cpo_ocpi.validation.IncomingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.ResponseMessageFactory;
-import com.extrawest.ocpi.model.dto.SessionDTO;
+import com.extrawest.ocpi.model.dto.ChargingPeriod;
+import com.extrawest.ocpi.model.dto.Price;
+import com.extrawest.ocpi.model.dto.SessionDto;
+import com.extrawest.ocpi.model.dto.cdr.CdrToken;
 import com.extrawest.ocpi.model.enums.AuthMethod;
 import com.extrawest.ocpi.model.enums.SessionStatus;
-import com.extrawest.ocpi.model.vo.CdrToken;
-import com.extrawest.ocpi.model.vo.ChargingPeriod;
-import com.extrawest.ocpi.model.vo.Price;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,8 +22,8 @@ import java.util.Objects;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class SessionResponseBddHandler extends IncomingMessageFieldsFactory<SessionDTO>
-        implements ResponseMessageFactory<SessionDTO> {
+public class SessionResponseBddHandler extends IncomingMessageFieldsFactory<SessionDto>
+        implements ResponseMessageFactory<SessionDto> {
     public static final String COUNTRY_CODE_REQUIRED = "country_code";
     public static final String PARTY_ID_REQUIRED = "party_id";
     public static final String ID_REQUIRED = "id";
@@ -187,7 +187,7 @@ public class SessionResponseBddHandler extends IncomingMessageFieldsFactory<Sess
     }
 
     @Override
-    public void validateAndAssertFieldsWithParams(Map<String, String> params, SessionDTO message) {
+    public void validateAndAssertFieldsWithParams(Map<String, String> params, SessionDto message) {
         if (Objects.equals(params.size(), 1) && params.containsKey(wildCard)) {
             return;
         }
@@ -196,7 +196,7 @@ public class SessionResponseBddHandler extends IncomingMessageFieldsFactory<Sess
     }
 
     @Override
-    public Class<SessionDTO> getClazz() {
-        return SessionDTO.class;
+    public Class<SessionDto> getClazz() {
+        return SessionDto.class;
     }
 }

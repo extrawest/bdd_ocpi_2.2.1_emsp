@@ -1,7 +1,8 @@
 Feature: CPO can add or retrieve EVSE
 
   Scenario: CPO checks EVSE in eMSP system
-    Given eMSP has "locations" data "db/locations.json"
+    Given CPO is registered in eMSP system
+    And eMSP has "locations" data "db/locations.json"
     When "evse_uid" path param is "3256"
     And "party_id" path param is "BEC"
     And "country_code" path param is "BE"
@@ -18,7 +19,8 @@ Feature: CPO can add or retrieve EVSE
       | last_updated       | 2015-06-28T08:12:01                                                                                                                                                                      |
 
   Scenario: CPO add EVSE in eMSP system
-    Given eMSP has "locations" data "db/locations.json"
+    Given CPO is registered in eMSP system
+    And eMSP has "locations" data "db/locations.json"
     When "location_id" path param is "LOC1"
     And "evse_uid" path param is "3256"
     And "party_id" path param is "BEC"

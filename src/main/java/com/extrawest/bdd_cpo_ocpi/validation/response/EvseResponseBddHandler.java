@@ -2,10 +2,11 @@ package com.extrawest.bdd_cpo_ocpi.validation.response;
 
 import com.extrawest.bdd_cpo_ocpi.validation.IncomingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.ResponseMessageFactory;
+import com.extrawest.ocpi.model.dto.DisplayText;
+import com.extrawest.ocpi.model.dto.location.*;
 import com.extrawest.ocpi.model.enums.Capability;
 import com.extrawest.ocpi.model.enums.ParkingRestriction;
 import com.extrawest.ocpi.model.enums.Status;
-import com.extrawest.ocpi.model.vo.*;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,8 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class EvseResponseBddHandler extends IncomingMessageFieldsFactory<Evse>
-        implements ResponseMessageFactory<Evse> {
+public class EvseResponseBddHandler extends IncomingMessageFieldsFactory<EVSE>
+        implements ResponseMessageFactory<EVSE> {
     public static final String UID_REQUIRED = "uid";
     public static final String LAST_UPDATED_REQUIRED = "last_updated";
     public static final String STATUS_REQUIRED = "status";
@@ -145,7 +146,7 @@ public class EvseResponseBddHandler extends IncomingMessageFieldsFactory<Evse>
     }
 
     @Override
-    public void validateAndAssertFieldsWithParams(Map<String, String> params, Evse message) {
+    public void validateAndAssertFieldsWithParams(Map<String, String> params, EVSE message) {
         if (Objects.equals(params.size(), 1) && params.containsKey(wildCard)) {
             return;
         }
@@ -154,7 +155,7 @@ public class EvseResponseBddHandler extends IncomingMessageFieldsFactory<Evse>
     }
 
     @Override
-    public Class<Evse> getClazz() {
-        return Evse.class;
+    public Class<EVSE> getClazz() {
+        return EVSE.class;
     }
 }

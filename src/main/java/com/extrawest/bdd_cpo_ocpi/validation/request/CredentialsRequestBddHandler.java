@@ -3,8 +3,8 @@ package com.extrawest.bdd_cpo_ocpi.validation.request;
 import com.extrawest.bdd_cpo_ocpi.utils.Generators;
 import com.extrawest.bdd_cpo_ocpi.validation.OutgoingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.RequestMessageFactory;
-import com.extrawest.ocpi.model.dto.CredentialsDTO;
-import com.extrawest.ocpi.model.vo.CredentialsRole;
+import com.extrawest.ocpi.model.dto.CredentialsDto;
+import com.extrawest.ocpi.model.dto.CredentialsRole;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,8 +16,8 @@ import java.util.Map;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class CredentialsRequestBddHandler extends OutgoingMessageFieldsFactory<CredentialsDTO>
-        implements RequestMessageFactory<CredentialsDTO> {
+public class CredentialsRequestBddHandler extends OutgoingMessageFieldsFactory<CredentialsDto>
+        implements RequestMessageFactory<CredentialsDto> {
     public static final String TOKEN_REQUIRED = "token";
     public static final String URL_REQUIRED = "url";
     public static final String ROLES_REQUIRED = "roles";
@@ -36,8 +36,8 @@ public class CredentialsRequestBddHandler extends OutgoingMessageFieldsFactory<C
     }
 
     @Override
-    public CredentialsDTO createMessageWithValidatedParams(Map<String, String> params) {
-        CredentialsDTO credentials = super.createMessageWithValidatedParamsViaLibModel(params);
+    public CredentialsDto createMessageWithValidatedParams(Map<String, String> params) {
+        CredentialsDto credentials = super.createMessageWithValidatedParamsViaLibModel(params);
         log.info(getParameterizeClassName() + ": " + credentials);
         return credentials;
     }

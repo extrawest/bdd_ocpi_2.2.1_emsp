@@ -4,8 +4,9 @@ import com.extrawest.bdd_cpo_ocpi.exception.AssertionException;
 import com.extrawest.bdd_cpo_ocpi.exception.BddTestingException;
 import com.extrawest.bdd_cpo_ocpi.exception.ValidationException;
 import com.extrawest.ocpi.exception.PropertyConstraintException;
-import com.extrawest.ocpi.model.OcpiResponseData;
 import com.extrawest.ocpi.model.enums.VersionNumber;
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
+import com.extrawest.ocpi.model.markers.OcpiResponseData;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Setter;
@@ -42,7 +43,7 @@ import static java.util.Objects.isNull;
 
 @Slf4j
 @Component
-public abstract class IncomingMessageFieldsFactory<T extends OcpiResponseData> {
+public abstract class IncomingMessageFieldsFactory<T extends OcpiRequestData> {
     @Autowired
     @Setter
     protected ObjectMapper mapper;
@@ -209,6 +210,9 @@ public abstract class IncomingMessageFieldsFactory<T extends OcpiResponseData> {
     protected boolean compareDateTimeIncludeWildCard(Map<String, String> expectedParams,
                                                      LocalDateTime actual, String fieldName) {
         String expected = expectedParams.get(fieldName);
+        if (expected == null) {
+            return actual == null;
+        }
         boolean result = Objects.equals(expected, wildCard)
                 || Objects.equals(actual, LocalDateTime.parse(expected));
 

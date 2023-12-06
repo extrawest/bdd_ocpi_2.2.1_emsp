@@ -1,6 +1,6 @@
 package com.extrawest.bdd_cpo_ocpi.validation;
 
-import com.extrawest.ocpi.model.OcpiRequestData;
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
 
 import java.util.Map;
 

@@ -1,7 +1,8 @@
 Feature: CPO can add or retrieve Locations
 
   Scenario: CPO checks Location in eMSP system
-    Given eMSP has "locations" data "db/locations.json"
+    Given CPO is registered in eMSP system
+    And eMSP has "locations" data "db/locations.json"
     When "location_id" path param is "LOC1"
     And "party_id" path param is "BEC"
     And "country_code" path param is "BE"
@@ -19,7 +20,8 @@ Feature: CPO can add or retrieve Locations
       | time_zone    | Europe/Brussels                                |
 
   Scenario: CPO add Location in eMSP system
-    When "location_id" path param is "LOC1"
+    Given CPO is registered in eMSP system
+    And "location_id" path param is "LOC1"
     And "party_id" path param is "BEC"
     And "country_code" path param is "BE"
     And CPO updates "location"

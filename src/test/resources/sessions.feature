@@ -1,7 +1,8 @@
 Feature: CPO can add, change charging Session or update not completed charging Session
 
-  Scenario: eMSP does not allow to remove session
-    Given eMSP has "sessions" data "db/sessions.json"
+  Scenario: eMSP does not allow to remove session (given with db)
+    Given CPO is registered in eMSP system
+    And eMSP has "sessions" data "db/sessions.json"
     When CPO with "party_id" "BEC" and "country_code" "DE" removes his "session" with "session_id" "1"
     Then eMSP responded with HTTP status 405
     And CPO checks "session" in eMSP system
@@ -22,6 +23,7 @@ Feature: CPO can add, change charging Session or update not completed charging S
 
 
   Scenario: eMSP does not allow to remove session
+    Given CPO is registered in eMSP system
     Given CPO with "party_id" "BEC" and "country_code" "DE" put "session" with "session_id" "1" in eMSP system with data
       | country_code     | DE                                                                                                                              |
       | party_id         | BEC                                                                                                                             |
@@ -38,18 +40,19 @@ Feature: CPO can add, change charging Session or update not completed charging S
       | status           | INVALID                                                                                                                         |
       | charging_periods | any                                                                                                                             |
     When CPO removes his "session"
-    And response is success
     And eMSP responded with HTTP status 405
     Then CPO checks "session" in eMSP system
     And eMSP responded with HTTP status 200
     And eMSP responded with OCPI status 1000
 
   Scenario: CPO checks session
-    Given eMSP has "sessions" data "db/sessions.json"
+    Given CPO is registered in eMSP system
+    And eMSP has "sessions" data "db/sessions.json"
     And CPO with "party_id" "BEC" and "country_code" "DE" checks "session" with "session_id" "1" in eMSP system
     Then response is success
 
   Scenario: eMSP allows to add and update session (only required params is request)
+    Given CPO is registered in eMSP system
     Given CPO with "party_id" "BEC" and "country_code" "DE" put "session" with "session_id" "1" in eMSP system with data
       | country_code    | DE                                                                                                                              |
       | party_id        | BEC                                                                                                                             |
@@ -67,6 +70,7 @@ Feature: CPO can add, change charging Session or update not completed charging S
     Then response is success
 
   Scenario: eMSP allows to add and update session (any for required)
+    Given CPO is registered in eMSP system
     Given CPO with "party_id" "BEC" and "country_code" "DE" put "session" with "session_id" "1" in eMSP system with data
       | country_code    | DE  |
       | party_id        | BEC |
@@ -84,6 +88,7 @@ Feature: CPO can add, change charging Session or update not completed charging S
     Then response is success
 
   Scenario: eMSP allows to add and update session (all params in request)
+    Given CPO is registered in eMSP system
     Given CPO with "party_id" "BEC" and "country_code" "DE" put "session" with "session_id" "1" in eMSP system with data
       | country_code            | DE                                                                                                                                   |
       | party_id                | BEC                                                                                                                                  |
@@ -106,6 +111,7 @@ Feature: CPO can add, change charging Session or update not completed charging S
     Then response is success
 
   Scenario: eMSP allows to add and update session (any for all)
+    Given CPO is registered in eMSP system
     Given CPO with "party_id" "BEC" and "country_code" "DE" put "session" with "session_id" "1" in eMSP system with data
       | country_code            | DE  |
       | party_id                | BEC |

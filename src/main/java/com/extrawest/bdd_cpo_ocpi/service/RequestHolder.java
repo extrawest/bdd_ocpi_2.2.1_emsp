@@ -1,6 +1,6 @@
 package com.extrawest.bdd_cpo_ocpi.service;
 
-import com.extrawest.ocpi.model.OcpiRequestData;
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
 import io.cucumber.spring.ScenarioScope;
 import io.restassured.http.Method;
 import lombok.Getter;

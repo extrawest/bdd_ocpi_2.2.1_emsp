@@ -2,11 +2,11 @@ package com.extrawest.bdd_cpo_ocpi.validation.request;
 
 import com.extrawest.bdd_cpo_ocpi.validation.OutgoingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.RequestMessageFactory;
-import com.extrawest.ocpi.model.dto.TokenDTO;
+import com.extrawest.ocpi.model.dto.token.EnergyContract;
+import com.extrawest.ocpi.model.dto.token.TokenDto;
 import com.extrawest.ocpi.model.enums.ProfileType;
 import com.extrawest.ocpi.model.enums.TokenType;
 import com.extrawest.ocpi.model.enums.WhitelistType;
-import com.extrawest.ocpi.model.vo.EnergyContract;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +18,8 @@ import java.util.Map;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class TokenRequestBddHandler extends OutgoingMessageFieldsFactory<TokenDTO>
-        implements RequestMessageFactory<TokenDTO> {
+public class TokenRequestBddHandler extends OutgoingMessageFieldsFactory<TokenDto>
+        implements RequestMessageFactory<TokenDto> {
     public static final String COUNTRY_CODE_REQUIRED = "country_code";
     public static final String PARTY_ID_REQUIRED = "party_id";
     public static final String UID_REQUIRED = "uid";
@@ -57,9 +57,9 @@ public class TokenRequestBddHandler extends OutgoingMessageFieldsFactory<TokenDT
                         parseLocalDateTimeOrGenerateRandom(lastUpdated, LAST_UPDATED_REQUIRED)));
 
         this.optionalFieldsSetup = new HashMap<>();
-        this.optionalFieldsSetup.put(VISUAL_NUMBER, TokenDTO::setVisualNumber);
-        this.optionalFieldsSetup.put(GROUP_ID, TokenDTO::setGroupId);
-        this.optionalFieldsSetup.put(LANGUAGE, TokenDTO::setLanguage);
+        this.optionalFieldsSetup.put(VISUAL_NUMBER, TokenDto::setVisualNumber);
+        this.optionalFieldsSetup.put(GROUP_ID, TokenDto::setGroupId);
+        this.optionalFieldsSetup.put(LANGUAGE, TokenDto::setLanguage);
         this.optionalFieldsSetup.put(DEFAULT_PROFILE_TYPE, (req, type) -> req.setDefaultProfileType(
                 parseEnum(type, DEFAULT_PROFILE_TYPE, ProfileType.class)));
         this.optionalFieldsSetup.put(ENERGY_CONTRACT, (req, energyContract) -> req.setEnergyContract(
@@ -67,8 +67,8 @@ public class TokenRequestBddHandler extends OutgoingMessageFieldsFactory<TokenDT
     }
 
     @Override
-    public TokenDTO createMessageWithValidatedParams(Map<String, String> params) {
-        TokenDTO cdrDTO = super.createMessageWithValidatedParamsViaLibModel(params);
+    public TokenDto createMessageWithValidatedParams(Map<String, String> params) {
+        TokenDto cdrDTO = super.createMessageWithValidatedParamsViaLibModel(params);
         log.info(getParameterizeClassName() + ": " + cdrDTO);
         return cdrDTO;
     }

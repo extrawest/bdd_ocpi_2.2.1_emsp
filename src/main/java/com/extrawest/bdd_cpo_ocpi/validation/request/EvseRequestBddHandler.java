@@ -3,10 +3,11 @@ package com.extrawest.bdd_cpo_ocpi.validation.request;
 import com.extrawest.bdd_cpo_ocpi.utils.Generators;
 import com.extrawest.bdd_cpo_ocpi.validation.OutgoingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.RequestMessageFactory;
+import com.extrawest.ocpi.model.dto.DisplayText;
+import com.extrawest.ocpi.model.dto.location.*;
 import com.extrawest.ocpi.model.enums.Capability;
 import com.extrawest.ocpi.model.enums.ParkingRestriction;
 import com.extrawest.ocpi.model.enums.Status;
-import com.extrawest.ocpi.model.vo.*;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +20,8 @@ import java.util.Map;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class EvseRequestBddHandler extends OutgoingMessageFieldsFactory<Evse>
-        implements RequestMessageFactory<Evse> {
+public class EvseRequestBddHandler extends OutgoingMessageFieldsFactory<EVSE>
+        implements RequestMessageFactory<EVSE> {
     public static final String UID_REQUIRED = "uid";
     public static final String LAST_UPDATED_REQUIRED = "last_updated";
     public static final String STATUS_REQUIRED = "status";
@@ -124,8 +125,8 @@ public class EvseRequestBddHandler extends OutgoingMessageFieldsFactory<Evse>
     }
 
     @Override
-    public Evse createMessageWithValidatedParams(Map<String, String> params) {
-        Evse evse = super.createMessageWithValidatedParamsViaLibModel(params);
+    public EVSE createMessageWithValidatedParams(Map<String, String> params) {
+        EVSE evse = super.createMessageWithValidatedParamsViaLibModel(params);
         log.info(getParameterizeClassName() + ": " + evse);
         return evse;
     }

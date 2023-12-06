@@ -3,12 +3,12 @@ package com.extrawest.bdd_cpo_ocpi.validation.request;
 import com.extrawest.bdd_cpo_ocpi.utils.Generators;
 import com.extrawest.bdd_cpo_ocpi.validation.OutgoingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.RequestMessageFactory;
-import com.extrawest.ocpi.model.dto.SessionDTO;
+import com.extrawest.ocpi.model.dto.ChargingPeriod;
+import com.extrawest.ocpi.model.dto.Price;
+import com.extrawest.ocpi.model.dto.SessionDto;
+import com.extrawest.ocpi.model.dto.cdr.CdrToken;
 import com.extrawest.ocpi.model.enums.AuthMethod;
 import com.extrawest.ocpi.model.enums.SessionStatus;
-import com.extrawest.ocpi.model.vo.CdrToken;
-import com.extrawest.ocpi.model.vo.ChargingPeriod;
-import com.extrawest.ocpi.model.vo.Price;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,8 +23,8 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 public class SessionRequestBddHandler
-        extends OutgoingMessageFieldsFactory<SessionDTO>
-        implements RequestMessageFactory<SessionDTO> {
+        extends OutgoingMessageFieldsFactory<SessionDto>
+        implements RequestMessageFactory<SessionDto> {
 
     public static final String COUNTRY_CODE_REQUIRED = "country_code";
     public static final String PARTY_ID_REQUIRED = "party_id";
@@ -108,8 +108,8 @@ public class SessionRequestBddHandler
     }
 
     @Override
-    public SessionDTO createMessageWithValidatedParams(Map<String, String> params) {
-        SessionDTO sessionDTO = super.createMessageWithValidatedParamsViaLibModel(params);
+    public SessionDto createMessageWithValidatedParams(Map<String, String> params) {
+        SessionDto sessionDTO = super.createMessageWithValidatedParamsViaLibModel(params);
         log.info(getParameterizeClassName() + ": " + sessionDTO);
         return sessionDTO;
     }

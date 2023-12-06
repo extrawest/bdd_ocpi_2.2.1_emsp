@@ -3,12 +3,12 @@ package com.extrawest.bdd_cpo_ocpi.validation.request;
 import com.extrawest.bdd_cpo_ocpi.utils.Generators;
 import com.extrawest.bdd_cpo_ocpi.validation.OutgoingMessageFieldsFactory;
 import com.extrawest.bdd_cpo_ocpi.validation.RequestMessageFactory;
-import com.extrawest.ocpi.model.dto.TariffDTO;
-import com.extrawest.ocpi.model.dto.TariffElementDTO;
+import com.extrawest.ocpi.model.dto.DisplayText;
+import com.extrawest.ocpi.model.dto.Price;
+import com.extrawest.ocpi.model.dto.location.EnergyMix;
+import com.extrawest.ocpi.model.dto.tariff.TariffDto;
+import com.extrawest.ocpi.model.dto.tariff.TariffElement;
 import com.extrawest.ocpi.model.enums.TariffType;
-import com.extrawest.ocpi.model.vo.DisplayText;
-import com.extrawest.ocpi.model.vo.EnergyMix;
-import com.extrawest.ocpi.model.vo.Price;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +21,8 @@ import java.util.Map;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class TariffRequestBddHandler extends OutgoingMessageFieldsFactory<TariffDTO>
-        implements RequestMessageFactory<TariffDTO> {
+public class TariffRequestBddHandler extends OutgoingMessageFieldsFactory<TariffDto>
+        implements RequestMessageFactory<TariffDto> {
 
     public static final String COUNTRY_CODE_REQUIRED = "country_code";
     public static final String PARTY_ID_REQUIRED = "party_id";
@@ -53,7 +53,7 @@ public class TariffRequestBddHandler extends OutgoingMessageFieldsFactory<Tariff
                 LAST_UPDATED_REQUIRED, (req, lastUpdated) -> req.setLastUpdated(
                         parseLocalDateTimeOrGenerateRandom(lastUpdated, LAST_UPDATED_REQUIRED)),
                 ELEMENTS_REQUIRED, (req, elements) -> req.setElements(
-                        parseToListOrGenerateRandom(elements, ELEMENTS_REQUIRED, TariffElementDTO.class,
+                        parseToListOrGenerateRandom(elements, ELEMENTS_REQUIRED, TariffElement.class,
                                 Generators::generateTariffElement))
         );
 
@@ -108,8 +108,8 @@ public class TariffRequestBddHandler extends OutgoingMessageFieldsFactory<Tariff
     }
 
     @Override
-    public TariffDTO createMessageWithValidatedParams(Map<String, String> params) {
-        TariffDTO tariffDTO = super.createMessageWithValidatedParamsViaLibModel(params);
+    public TariffDto createMessageWithValidatedParams(Map<String, String> params) {
+        TariffDto tariffDTO = super.createMessageWithValidatedParamsViaLibModel(params);
         log.info(getParameterizeClassName() + ": " + tariffDTO);
         return tariffDTO;
     }

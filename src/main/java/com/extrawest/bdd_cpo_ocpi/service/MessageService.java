@@ -1,8 +1,8 @@
 package com.extrawest.bdd_cpo_ocpi.service;
 
 import com.extrawest.bdd_cpo_ocpi.models.enums.ImplementedMessageType;
-import com.extrawest.ocpi.model.OcpiRequestData;
-import com.extrawest.ocpi.model.OcpiResponseData;
+import com.extrawest.ocpi.model.markers.OcpiRequestData;
+import com.extrawest.ocpi.model.markers.OcpiResponseData;
 import io.restassured.response.Response;
 
 import java.util.Map;
